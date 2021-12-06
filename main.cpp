@@ -2,8 +2,19 @@
 #include <iostream>
 #include <SDL2/SDL_main.h>
 #include <SDL2/SDL.h>
-#include <SDL2/SDL2_gfx.h>
-//#include <SDL2/SDL2_gfxPrimitives.h>
+#if __linux__
+	#include <SDL2/SDL2_gfxPrimitives.h>
+#elif __unix__
+	#include <SDL2/SDL2_gfxPrimitives.h>
+#endif
+
+#ifdef _WIN32
+    #include <SDL2/SDL2_gfx.h>
+#endif
+
+#ifdef _WIN64
+    #include <SDL2/SDL2_gfx.h>
+#endif
 #include <cmath>
 
 #define WINDOW_TITLE    "HW4_mHBr"
