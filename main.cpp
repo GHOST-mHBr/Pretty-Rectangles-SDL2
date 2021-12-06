@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <SDL2/SDL_main.h>
 #include <SDL2/SDL.h>
@@ -76,6 +75,13 @@ int main(int argc, char *argv[])
     int dx1 = DELTA_L, dy1 = DELTA_L, dx2 = -DELTA_L, dy2 = -DELTA_L;
 
     SDL_ShowWindow(win_main);
+	
+	SDL_Texture* rect1_texture = SDL_CreateTexture(renderer_main, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,  RECT_WIDTH, RECT_HEIGHT);
+
+    SDL_Texture* rect2_texture = SDL_CreateTexture(renderer_main, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, RECT_WIDTH, RECT_HEIGHT);
+
+    SDL_Texture * intersect_texture = SDL_CreateTexture(renderer_main , SDL_PIXELFORMAT_RGBA8888 , SDL_TEXTUREACCESS_TARGET , RECT_WIDTH , RECT_HEIGHT);
+
 
     while (should_loop)
     {
@@ -102,8 +108,6 @@ int main(int argc, char *argv[])
         x2 += dx2;
         y2 += dy2;
 
-        SDL_Texture* rect1_texture = SDL_CreateTexture(renderer_main, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,  RECT_WIDTH, RECT_HEIGHT);
-        SDL_Texture* rect2_texture = SDL_CreateTexture(renderer_main, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, RECT_WIDTH, RECT_HEIGHT);
 
         SDL_Rect rect1, rect2;
         rect1.x = x1;
@@ -116,7 +120,6 @@ int main(int argc, char *argv[])
         rect2.w=RECT_WIDTH;
 
 
-        SDL_Texture * intersect_texture = SDL_CreateTexture(renderer_main , SDL_PIXELFORMAT_RGBA8888 , SDL_TEXTUREACCESS_TARGET , RECT_WIDTH , RECT_HEIGHT);
 
 
 
@@ -147,9 +150,9 @@ int main(int argc, char *argv[])
         SDL_SetRenderTarget(renderer_main , NULL);
 
         SDL_RenderCopy(renderer_main, rect1_texture, NULL, &rect1);
-        SDL_RenderPresent(renderer_main);
+//        SDL_RenderPresent(renderer_main);
         SDL_RenderCopy(renderer_main, rect2_texture, NULL, &rect2);
-        SDL_RenderPresent(renderer_main);
+//        SDL_RenderPresent(renderer_main);
         SDL_RenderCopy(renderer_main , intersect_texture , NULL , &intersect);
         SDL_RenderPresent(renderer_main);
 
