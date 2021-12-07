@@ -174,6 +174,9 @@ int main(int argc, char *argv[])
         // SDL_RenderPresent(renderer_main);
     }
 
+    SDL_DestroyTexture(rect1_texture);
+    SDL_DestroyTexture(rect2_texture);
+    SDL_DestroyTexture(intersect_texture);
     SDL_DestroyRenderer(renderer_main);
     renderer_main = NULL;
     SDL_DestroyWindow(win_main);
