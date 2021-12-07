@@ -48,15 +48,6 @@ int init_window_and_renderer(SDL_Window** window, SDL_Renderer **renderer)
     return 1;
 }
 
-void draw_rect(SDL_Rect *rect, SDL_Renderer** renderer, SDL_Texture** texture, Uint32 color)
-{
-    SDL_SetRenderTarget(*renderer, *texture);
-    //SDL_SetRenderDrawColor(*renderer , (Uint8)color , (Uint8)color<<8 , (Uint8)color<<16 , (Uint8)color<<24);
-    SDL_SetRenderDrawColor(*renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-    SDL_RenderDrawRect(*renderer, rect);
-    SDL_RenderCopy(*renderer, *texture, NULL, NULL);
-    SDL_RenderPresent(*renderer);
-}
 
 int main(int argc, char *argv[])
 {
