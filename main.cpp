@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
 
     SDL_Texture * intersect_texture = SDL_CreateTexture(renderer_main , SDL_PIXELFORMAT_RGBA8888 , SDL_TEXTUREACCESS_TARGET , RECT_WIDTH , RECT_HEIGHT);
 
-
+// ---------- main loop ------------
     while (should_loop)
     {
 
@@ -112,8 +112,6 @@ int main(int argc, char *argv[])
 
 
 
-
-
         SDL_SetRenderDrawColor(renderer_main, 30,40, 50, 255);
         SDL_RenderClear(renderer_main);
 
@@ -127,13 +125,13 @@ int main(int argc, char *argv[])
         SDL_SetRenderTarget(renderer_main, rect2_texture);
         SDL_SetRenderDrawColor(renderer_main, 180, 150, 100, 255);
         SDL_RenderClear(renderer_main);
-        SDL_SetRenderTarget(renderer_main, NULL);
+        //SDL_SetRenderTarget(renderer_main, NULL);
 
 
         SDL_SetRenderTarget(renderer_main, rect1_texture);
         SDL_SetRenderDrawColor(renderer_main, 100, 100, 250, 255);
         SDL_RenderClear(renderer_main);
-        SDL_SetRenderTarget(renderer_main, NULL);
+        //SDL_SetRenderTarget(renderer_main, NULL);
 
         SDL_SetRenderTarget(renderer_main , intersect_texture);
         SDL_SetRenderDrawColor(renderer_main , 255 , 255-intersect_s , 255-intersect_s , 255);
@@ -141,12 +139,9 @@ int main(int argc, char *argv[])
         SDL_SetRenderTarget(renderer_main , NULL);
 
         SDL_RenderCopy(renderer_main, rect1_texture, NULL, &rect1);
-//        SDL_RenderPresent(renderer_main);
         SDL_RenderCopy(renderer_main, rect2_texture, NULL, &rect2);
-//        SDL_RenderPresent(renderer_main);
         SDL_RenderCopy(renderer_main , intersect_texture , NULL , &intersect);
         SDL_RenderPresent(renderer_main);
-
 
         SDL_Delay(20);
 
@@ -166,18 +161,17 @@ int main(int argc, char *argv[])
                 break;
             }
         }
-
-
-        // SDL_RenderClear(renderer_main);
-        // SDL_SetRenderDrawColor(renderer_main, 30, 40, 50, 255);
-        // SDL_RenderFillRect(renderer_main, NULL);
-        // SDL_RenderPresent(renderer_main);
     }
 
+
+    // ----------- Destroy elements and quit -------------
     SDL_DestroyTexture(rect1_texture);
     SDL_DestroyTexture(rect2_texture);
     SDL_DestroyTexture(intersect_texture);
     SDL_DestroyRenderer(renderer_main);
+    rect1_texture = NULL;
+    rect2_texture = NULL;
+    intersect_texture = NULL;
     renderer_main = NULL;
     SDL_DestroyWindow(win_main);
     win_main = NULL;
